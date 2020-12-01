@@ -33,7 +33,7 @@ namespace Luke1
         static int SolveArray()
         {
             byte[] arr = new byte[100000];
-            var numbers = TextFile.ReadPositiveIntList("numbers.txt");
+            var numbers = TextFile.ReadPositiveIntsList("numbers.txt");
             foreach (int i in numbers)
             {
                 arr[i - 1] = 1;
@@ -52,7 +52,7 @@ namespace Luke1
         {
             int n = 100000;
             int expectedSum = (n * (n + 1)) / 2;
-            var numbers = TextFile.ReadPositiveIntList("numbers.txt");
+            var numbers = TextFile.ReadPositiveIntsList("numbers.txt");
             int sum = 0;
             foreach (int i in numbers)
             {
