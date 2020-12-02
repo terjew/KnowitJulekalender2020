@@ -1,9 +1,5 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+﻿**/.vs/
+**/bin
+**/obj
+**/x64/
 
-/.vs/KnowitJulekalender2020/v16
-/Luke1/bin
-/Luke1/obj
-/Utilities/bin
-/Utilities/obj
