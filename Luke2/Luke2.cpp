@@ -15,10 +15,10 @@ bool HasDigit7(int i)
   return false;
 }
 
-int FindLowerPrime(int num, std::vector<bool> &primes)
+int FindLowerPrime(int num)
 {
   while (num > 0) {
-    if (primes[num]) return num;
+    if (IsPrime(num)) return num;
     num--;
   }
   return 0;
@@ -26,12 +26,11 @@ int FindLowerPrime(int num, std::vector<bool> &primes)
 
 int CountPackagesDelivered(int max)
 {
-  auto primes = SievePrimes(max);
   int count = 0;
   for (int i = 0; i < max; i++)
   {
     if (HasDigit7(i)) {
-      i += FindLowerPrime(i, primes);
+      i += FindLowerPrime(i);
     }
     else {
       count++;
@@ -43,7 +42,16 @@ int CountPackagesDelivered(int max)
 int main()
 {
   int max = 5433000;
-  auto func = [&]() {return CountPackagesDelivered(max); };
-  int count = measure(func);
+  int numElements = MeasurePerformance("Sieve (ikke i bruk)", [&]() {
+    return (int)SievePrimes(max).size();
+  });
+
+  int numPrimes = MeasurePerformance("GetAllPrimes (ikke i bruk)", [&]() {
+    return (int)GetAllPrimes(max).size();
+  });
+
+  int count = MeasurePerformance("Telle pakker uten sieve", [&]() {
+    return CountPackagesDelivered(max); 
+  });
   std::cout << "\nNissen leverer " << count << " pakker" << std::endl;
 }
