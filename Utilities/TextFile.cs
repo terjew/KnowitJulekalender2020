@@ -70,5 +70,19 @@ namespace Utilities
             }
             return list;
         }
+
+        public static List<string> ReadStringList(string path)
+        {
+            List<string> list = new List<string>();
+            using (StreamReader sr = File.OpenText(path))
+            {
+                string s = String.Empty;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    list.Add(s);
+                }
+            }
+            return list;
+        }
     }
 }

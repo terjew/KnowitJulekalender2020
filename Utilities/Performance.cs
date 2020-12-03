@@ -9,10 +9,8 @@ namespace Utilities
 {
     public static class Performance
     {
-        public static void TimeRun(string what, Action a)
+        public static void TimeRun(string what, Action a, int runs = 20, int loops = 100)
         {
-            int runs = 20;
-            int loops = 100;
             double total = 0;
             for (int run = 0; run < runs; run++)
             {

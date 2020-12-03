@@ -4,11 +4,10 @@
 #include <chrono>
 #include <functional>
 
-int MeasurePerformance(const std::string &what, const std::function<int()>& f)
+int MeasurePerformance(const std::string &what, int runs, const std::function<int()>& f)
 {
   int result;
   auto t1 = std::chrono::high_resolution_clock::now();
-  int runs = 100;
   for (int i = 0; i < runs; i++) {
     result = f();
   }
@@ -19,7 +18,7 @@ int MeasurePerformance(const std::string &what, const std::function<int()>& f)
   return result;
 }
 
-std::vector<bool>& SievePrimes(int maxPrime)
+std::vector<bool> SievePrimes(int maxPrime)
 {
   std::vector<bool> primes = std::vector<bool>(maxPrime, true);
   int maxSquared = (int)sqrt(maxPrime);
@@ -57,7 +56,7 @@ std::vector<int> GetAllPrimes(int maxPrime)
 }
 
 bool IsPrime(int n) {
-  if (n == 1) {
+  if (n == 1 || n == 4) {
     return false;
   }
   if (n == 2 || n == 3) {

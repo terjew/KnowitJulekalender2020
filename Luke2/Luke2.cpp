@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "..\CppUtilities\Utilities.h"
+#include "..\CppUtilities\Miller-Rabin.h"
 
 bool HasDigit7(int i)
 {
@@ -15,10 +16,12 @@ bool HasDigit7(int i)
   return false;
 }
 
+std::function<bool(int)> primeTestFunc;
+
 int FindLowerPrime(int num)
 {
   while (num > 0) {
-    if (IsPrime(num)) return num;
+    if (primeTestFunc(num)) return num;
     num--;
   }
   return 0;
@@ -42,16 +45,28 @@ int CountPackagesDelivered(int max)
 int main()
 {
   int max = 5433000;
-  int numElements = MeasurePerformance("Sieve (ikke i bruk)", [&]() {
+  int numElements = MeasurePerformance("Telle pakker med sieve (ikke i bruk)", 100, [&]() {
     return (int)SievePrimes(max).size();
   });
 
-  int numPrimes = MeasurePerformance("GetAllPrimes (ikke i bruk)", [&]() {
+  int numPrimes = MeasurePerformance("GetAllPrimes (ikke i bruk)", 100, [&]() {
     return (int)GetAllPrimes(max).size();
   });
 
-  int count = MeasurePerformance("Telle pakker uten sieve", [&]() {
-    return CountPackagesDelivered(max); 
+  primeTestFunc = [&](int n) { return IsPrime(n); };
+  int count = MeasurePerformance("Telle pakker uten sieve", 1000, [&]() {
+    return CountPackagesDelivered(max);
   });
+
+  primeTestFunc = [&](int n) { return millerRabin::isprime(n, 5); };
+  MeasurePerformance("Telle pakker uten sieve, Miller-Rabin (5)", 1000, [&]() {
+    return CountPackagesDelivered(max);
+  });
+
+  primeTestFunc = [&](int n) { return millerRabin::isprime(n, 13); };
+  MeasurePerformance("Telle pakker uten sieve, Miller-Rabin (13)", 1000, [&]() {
+    return CountPackagesDelivered(max);
+  });
+
   std::cout << "\nNissen leverer " << count << " pakker" << std::endl;
 }
