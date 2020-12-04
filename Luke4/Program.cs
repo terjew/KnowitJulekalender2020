@@ -37,9 +37,7 @@ namespace Luke4
             return
                 lines.Select(l => l
                     .Split(", ")
-                    .Select(token => token
-                        .Split(": ")
-                    )
+                    .Select(token => token.Split(": "))
                     .Select(pair => new IngredientAmount { Ingredient = pair[0], Amount = long.Parse(pair[1]) })
                 )
                 .SelectMany(l => l)
