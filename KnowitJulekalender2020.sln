@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luke5", "Luke5\Luke5.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luke6", "Luke6\Luke6.csproj", "{C72FBDBA-E124-451F-83F6-8EA8F16519AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luke7", "Luke7\Luke7.csproj", "{45AF0758-F0E8-44F2-869D-B249A5C44760}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,18 @@ Global
 		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Release|x64.Build.0 = Release|Any CPU
 		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Release|x86.ActiveCfg = Release|Any CPU
 		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Release|x86.Build.0 = Release|Any CPU
+		{45AF0758-F0E8-44F2-869D-B249A5C44760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45AF0758-F0E8-44F2-869D-B249A5C44760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45AF0758-F0E8-44F2-869D-B249A5C44760}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{45AF0758-F0E8-44F2-869D-B249A5C44760}.Debug|x64.Build.0 = Debug|Any CPU
+		{45AF0758-F0E8-44F2-869D-B249A5C44760}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{45AF0758-F0E8-44F2-869D-B249A5C44760}.Debug|x86.Build.0 = Debug|Any CPU
+		{45AF0758-F0E8-44F2-869D-B249A5C44760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45AF0758-F0E8-44F2-869D-B249A5C44760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45AF0758-F0E8-44F2-869D-B249A5C44760}.Release|x64.ActiveCfg = Release|Any CPU
+		{45AF0758-F0E8-44F2-869D-B249A5C44760}.Release|x64.Build.0 = Release|Any CPU
+		{45AF0758-F0E8-44F2-869D-B249A5C44760}.Release|x86.ActiveCfg = Release|Any CPU
+		{45AF0758-F0E8-44F2-869D-B249A5C44760}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
