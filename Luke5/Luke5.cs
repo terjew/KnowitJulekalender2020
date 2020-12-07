@@ -6,7 +6,7 @@ using Utilities;
 
 namespace Luke5
 {
-    class Program
+    class Luke5
     {
         static Size GetDirection(char c)
         {

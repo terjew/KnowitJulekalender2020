@@ -22,7 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luke3", "Luke3\Luke3.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luke4", "Luke4\Luke4.csproj", "{E5AA4190-10C9-49A1-9941-9D1725D57E99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luke5", "Luke5\Luke5.csproj", "{E4E2FC60-14D0-4220-8351-4F6990BBA329}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luke5", "Luke5\Luke5.csproj", "{E4E2FC60-14D0-4220-8351-4F6990BBA329}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luke6", "Luke6\Luke6.csproj", "{C72FBDBA-E124-451F-83F6-8EA8F16519AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +117,18 @@ Global
 		{E4E2FC60-14D0-4220-8351-4F6990BBA329}.Release|x64.Build.0 = Release|Any CPU
 		{E4E2FC60-14D0-4220-8351-4F6990BBA329}.Release|x86.ActiveCfg = Release|Any CPU
 		{E4E2FC60-14D0-4220-8351-4F6990BBA329}.Release|x86.Build.0 = Release|Any CPU
+		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Debug|x64.Build.0 = Debug|Any CPU
+		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Debug|x86.Build.0 = Debug|Any CPU
+		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Release|x64.ActiveCfg = Release|Any CPU
+		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Release|x64.Build.0 = Release|Any CPU
+		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Release|x86.ActiveCfg = Release|Any CPU
+		{C72FBDBA-E124-451F-83F6-8EA8F16519AF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
