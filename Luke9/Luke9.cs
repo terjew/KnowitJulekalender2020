@@ -26,11 +26,6 @@ namespace Luke9
             }
         }
 
-        bool IsInfected(int x, int y)
-        {
-            return infected[y * width + x];
-        }
-
         public int Solve()
         {
             int newInfected = infected.Count(b => b);
@@ -47,10 +42,10 @@ namespace Luke9
                         int index = y * width + x;
                         if (infected[index]) continue; //already infected
                         int n = 0;
-                        n += (y > 0 && infected[index - width]) ? 1 : 0; //up
-                        n += (y < height - 1 && infected[index + width]) ? 1 : 0; //down
-                        n += (x > 0 && infected[index - 1]) ? 1 : 0; //left
-                        n += (x < width - 1 && infected[index + 1]) ? 1 : 0; //right
+                        if (y > 0 && infected[index - width]) n++;
+                        if (y < height - 1 && infected[index + width]) n++;
+                        if (n < 2 && x > 0 && infected[index - 1]) n++;
+                        if (n < 2 && x < width - 1 && infected[index + 1]) n++;
                         if (n > 1)
                         {
                             newInfected++;
