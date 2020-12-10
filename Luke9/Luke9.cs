@@ -58,6 +58,7 @@ namespace Luke9
             }
             return steps;
         }
+
         static void Main(string[] args)
         {
             int days = 0;

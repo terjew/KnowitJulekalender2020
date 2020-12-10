@@ -9,9 +9,14 @@ namespace Utilities
 {
     public static class Performance
     {
-        public static void TimeRun(string what, Action a, int runs = 20, int loops = 100)
+        public static void TimeRun(string what, Action a, int runs = 10, int loops = 100)
         {
-            double total = 0;
+            int warmupCount = 10;
+            for (int i = 0; i < warmupCount; i++)
+            {
+                a();
+            }
+            long totalTicks = 0;
             for (int run = 0; run < runs; run++)
             {
                 Stopwatch sw = Stopwatch.StartNew();
@@ -20,12 +25,11 @@ namespace Utilities
                     a();
                 }
                 sw.Stop();
-                var ms = sw.ElapsedMilliseconds;
-                var us = sw.ElapsedTicks / ((double)Stopwatch.Frequency / 1000000);
-                total += us;
-                Console.WriteLine($"{what}: {ms} ms ({us} us) in {loops} iterations. {us/loops} us/run");
+                totalTicks += sw.ElapsedTicks;
             }
-            Console.WriteLine($"{what}: {total} total in {runs * loops} iterations. {total / (runs * loops)} us/run");
+            double ticksPerSecond = (double)Stopwatch.Frequency;
+
+            Console.WriteLine($"{what}: {totalTicks} ticks total in {runs * loops} iterations ({runs} runs of {loops} loops), {totalTicks * 1000000 / ticksPerSecond / (runs * loops)} µs/run");
         }
     }
 }
