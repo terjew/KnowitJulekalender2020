@@ -8,7 +8,6 @@ namespace Utilities
     {
         public static IEnumerable<int> EnumeratePositiveInts(string path)
         {
-            List<int> list = new List<int>();
             using (FileStream fs = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 using (BufferedStream bs = new BufferedStream(fs))
@@ -34,6 +33,26 @@ namespace Utilities
                         }
                     }
                     yield return y;
+                }
+            }
+        }
+
+        public static IEnumerable<char> EnumerateAsciiCharacters(string path)
+        {
+            using (FileStream fs = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                using (BufferedStream bs = new BufferedStream(fs))
+                {
+                    const int n = 64000;
+                    byte[] bytes = new byte[n];
+                    int available = 0;
+                    while ((available = bs.Read(bytes, 0, n)) != 0)
+                    {
+                        for (int i = 0; i < available; i++)
+                        {
+                            yield return (char)bytes[i];
+                        }
+                    }
                 }
             }
         }
