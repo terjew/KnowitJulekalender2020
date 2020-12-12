@@ -84,5 +84,17 @@ namespace Utilities
             }
             return list;
         }
+
+        public static IEnumerable<string> EnumerateLines(string path)
+        {
+            using (StreamReader sr = File.OpenText(path))
+            {
+                string s = String.Empty;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    yield return s;
+                }
+            }
+        }
     }
 }
