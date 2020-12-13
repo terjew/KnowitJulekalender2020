@@ -35,7 +35,6 @@ namespace Luke12
 
         private static int GetLargestGeneration(IEnumerable<char> input)
         {
-            int pos = 0;
             int generation = 0;
             List<int> generations = new List<int>();
             generations.Add(0);

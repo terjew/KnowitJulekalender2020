@@ -11,8 +11,6 @@ namespace Luke13
     {
         static void Main(string[] args)
         {
-            var sample = "csfgunqvmiotgixxqeexdnwrtrgftpafkqepkvwwscotfahzneobiipslnbmgyxxumdwxeymprtjrhapxqvguqazkwiorstwcjii";
-
             string remaining = null;
             string text = "phzvjbrsnkeehvglzpveenyjycwzpukigcdiotomuankejhqdhqtojmezmfqtuasuhzbbgawjlxbrqotwgythqsrzfbgisnakeopxtzbbdfbjdnuqymqqihylyszwuezoigjoxhavuyzqnqfnzvtazagvahullujteapqeogyfelzygcqujnxshrivkmhwkkmfiqpqoihcxarewxffyrwmmfghharnijxondraglvemdqfnxdhxilweqcxxsvviuxzshpfjttoymplfahmaskvtimvirhmqoudvqagacqsoeyvpouejmamchbhqfhidpsyovxeazzfbbocuydquadffumpmhwwiotpqiznyvmlnthupvvgfwrpeirltvlorgjqpwzstgjwpsixrbbjsuiumaxydtkcjxvgazonghhfgswunxjhnxvzqxnvtrdujblkbeebsdfgawvholjddwezacxiumyvhlwwbqdpfxzvhyqxcqlnqpvqnvjnygvwrzzaojhnfeywptbttgyyhtkpdbsqcaxpuzsqpadjzssfdiguijlycugnbftcmmpjjjxrjkygethmfvkxbhjkjhrrhgyplasjiunhnqkcvdyzlzxnbdlyxbthmpwrwovuibuypptvgligepclvyxvwkhziqucrnkdelmvdaecdnzeapebfkhocdoaljciemcdasdxqqzjbzhetmovgitntxmvgnfqzrtlaymmxepetgrdsqwmjsodqqrgccnahycqpltphhaeyjnnytjctmkoysduumnurtyzodhsaqdhpyytwrkvymwikkxoolrcgipaftzvwbqounhxriykepdahubsijtwsvtzjihpatpmuemzwthfzypjpiwzhckuxvfrlxlmcvmdujwsghltaukprsancpooxywxccnqgqkgmscstoupxilycjumybfcnjtycichjvkxwfqqqinzrzpthesxlcgcifvjuhyegmjrkb ";
             Performance.TimeRun("text->ienumerable", () =>
