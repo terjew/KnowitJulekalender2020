@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Utilities;
 
 namespace Luke13
@@ -12,23 +13,51 @@ namespace Luke13
         {
             var sample = "csfgunqvmiotgixxqeexdnwrtrgftpafkqepkvwwscotfahzneobiipslnbmgyxxumdwxeymprtjrhapxqvguqazkwiorstwcjii";
 
-            char[] remaining = null;
-
-            Performance.TimeRun("read and solve (string)", () =>
+            string remaining = null;
+            string text = "phzvjbrsnkeehvglzpveenyjycwzpukigcdiotomuankejhqdhqtojmezmfqtuasuhzbbgawjlxbrqotwgythqsrzfbgisnakeopxtzbbdfbjdnuqymqqihylyszwuezoigjoxhavuyzqnqfnzvtazagvahullujteapqeogyfelzygcqujnxshrivkmhwkkmfiqpqoihcxarewxffyrwmmfghharnijxondraglvemdqfnxdhxilweqcxxsvviuxzshpfjttoymplfahmaskvtimvirhmqoudvqagacqsoeyvpouejmamchbhqfhidpsyovxeazzfbbocuydquadffumpmhwwiotpqiznyvmlnthupvvgfwrpeirltvlorgjqpwzstgjwpsixrbbjsuiumaxydtkcjxvgazonghhfgswunxjhnxvzqxnvtrdujblkbeebsdfgawvholjddwezacxiumyvhlwwbqdpfxzvhyqxcqlnqpvqnvjnygvwrzzaojhnfeywptbttgyyhtkpdbsqcaxpuzsqpadjzssfdiguijlycugnbftcmmpjjjxrjkygethmfvkxbhjkjhrrhgyplasjiunhnqkcvdyzlzxnbdlyxbthmpwrwovuibuypptvgligepclvyxvwkhziqucrnkdelmvdaecdnzeapebfkhocdoaljciemcdasdxqqzjbzhetmovgitntxmvgnfqzrtlaymmxepetgrdsqwmjsodqqrgccnahycqpltphhaeyjnnytjctmkoysduumnurtyzodhsaqdhpyytwrkvymwikkxoolrcgipaftzvwbqounhxriykepdahubsijtwsvtzjihpatpmuemzwthfzypjpiwzhckuxvfrlxlmcvmdujwsghltaukprsancpooxywxccnqgqkgmscstoupxilycjumybfcnjtycichjvkxwfqqqinzrzpthesxlcgcifvjuhyegmjrkb ";
+            Performance.TimeRun("text->ienumerable", () =>
             {
-                remaining = GetRemainingCharacters(File.ReadAllText("text.txt")).ToArray();
+                remaining = new string(GetRemainingCharacters(text).ToArray());
+            }, 1000, 1000);
+            Performance.TimeRun("text->string", () =>
+            {
+                remaining = GetRemainingCharactersString(text);
+            }, 1000, 1000);
+            Performance.TimeRun("file->string", () =>
+            {
+                remaining = GetRemainingCharactersString(File.ReadAllText("text.txt"));
+            }, 100, 1000);
+            Performance.TimeRun("file->ienumerable", () =>
+            {
+                remaining = new string(GetRemainingCharacters(File.ReadAllText("text.txt")).ToArray());
             }, 100, 1000);
 
-            Console.WriteLine(new string(remaining));
+            Console.WriteLine(remaining);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string GetRemainingCharactersString(string s)
+        {
+            var remaining = new char[26];
+            int p = 0;
+            int[] count = new int[26];
+            for (int i = 0; i < s.Length - 1; i++)
+            {
+                var c = s[i];
+                var index = c - 'a';
+                count[index]++;
+                if (count[index] == index + 1) remaining[p++] = c;
+            }
+            return new string(remaining);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerable<char> GetRemainingCharacters(string s)
         {
             int[] count = new int[26];
-            for (int i = 0; i < s.Length; i++)
+            for (int i = 0; i < s.Length - 1; i++)
             {
                 var c = s[i];
-                if (c < 'a') continue;
                 var index = c - 'a';
                 count[index]++;
                 if (count[index] == index + 1) yield return c;
