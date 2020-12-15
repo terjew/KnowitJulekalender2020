@@ -9,34 +9,16 @@ namespace Luke15
     {
         static void Main(string[] args)
         {
-            var combinations = TextFile.ReadStringList("riddles.txt");
-            List<(string, string)> pairs = new List<(string, string)>();
-
-            foreach (var line in combinations)
+            int sum = 0;
+            Performance.TimeRun("LINQ solution", () =>
             {
-                var pair = line.Split(", ");
-                pairs.Add((pair[0], pair[1]));
-            }
+                var combinations = TextFile.ReadStringList("riddles.txt");
+                var dictionary = TextFile.ReadStringSet("wordlist.txt");
+                var pairs = combinations.Select(c => c.Split(", ")).Select(arr => (arr[0], arr[1])).ToArray();
+                sum = dictionary.AsParallel().Where(word => pairs.Any(p => dictionary.Contains($"{p.Item1}{word}") && dictionary.Contains($"{word}{p.Item2}"))).Sum(w => w.Length);
+            }, 10, 1, 3);
 
-            var dictionary = TextFile.ReadStringList("wordlist.txt").ToHashSet();
-
-            HashSet<string> infixes = new HashSet<string>();
-            foreach (var kvp in pairs)
-            {
-                var prefix = kvp.Item1;
-                var suffix = kvp.Item2;
-                var infixCandidates = dictionary.AsParallel().Where(word => word.Length > prefix.Length && word.StartsWith(prefix)).Select(word => word.Substring(prefix.Length)).ToArray();
-                foreach (var candidate in infixCandidates)
-                {
-                    if (dictionary.Contains(candidate) && dictionary.Contains(candidate + suffix))
-                    {
-                        infixes.Add(candidate);
-                    }
-                }
-            }
-
-            Console.WriteLine(infixes.Sum(w => w.Length));
-            foreach (var infix in infixes.OrderBy(s => s)) Console.WriteLine(infix);
+            Console.WriteLine(sum);
         }
     }
 }

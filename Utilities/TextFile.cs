@@ -104,6 +104,20 @@ namespace Utilities
             return list;
         }
 
+        public static HashSet<string> ReadStringSet(string path)
+        {
+            HashSet<string> set = new HashSet<string>();
+            using (StreamReader sr = File.OpenText(path))
+            {
+                string s = String.Empty;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    set.Add(s);
+                }
+            }
+            return set;
+        }
+
         public static IEnumerable<string> EnumerateLines(string path)
         {
             using (StreamReader sr = File.OpenText(path))
