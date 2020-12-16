@@ -44,7 +44,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luke14", "Luke14\Luke14.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luke15", "Luke15\Luke15.csproj", "{97FB2B86-74C1-4C0F-B06C-2B444DF256AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luke16", "Luke16\Luke16.csproj", "{0320B9EA-F558-494F-86ED-A973EB8C372A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luke16", "Luke16\Luke16.csproj", "{0320B9EA-F558-494F-86ED-A973EB8C372A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Luke16Cpp", "Luke16Cpp\Luke16Cpp.vcxproj", "{F8D29357-6A86-480F-9382-AC3A728A68A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -269,6 +271,16 @@ Global
 		{0320B9EA-F558-494F-86ED-A973EB8C372A}.Release|x64.Build.0 = Release|Any CPU
 		{0320B9EA-F558-494F-86ED-A973EB8C372A}.Release|x86.ActiveCfg = Release|Any CPU
 		{0320B9EA-F558-494F-86ED-A973EB8C372A}.Release|x86.Build.0 = Release|Any CPU
+		{F8D29357-6A86-480F-9382-AC3A728A68A8}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{F8D29357-6A86-480F-9382-AC3A728A68A8}.Debug|x64.ActiveCfg = Debug|x64
+		{F8D29357-6A86-480F-9382-AC3A728A68A8}.Debug|x64.Build.0 = Debug|x64
+		{F8D29357-6A86-480F-9382-AC3A728A68A8}.Debug|x86.ActiveCfg = Debug|Win32
+		{F8D29357-6A86-480F-9382-AC3A728A68A8}.Debug|x86.Build.0 = Debug|Win32
+		{F8D29357-6A86-480F-9382-AC3A728A68A8}.Release|Any CPU.ActiveCfg = Release|Win32
+		{F8D29357-6A86-480F-9382-AC3A728A68A8}.Release|x64.ActiveCfg = Release|x64
+		{F8D29357-6A86-480F-9382-AC3A728A68A8}.Release|x64.Build.0 = Release|x64
+		{F8D29357-6A86-480F-9382-AC3A728A68A8}.Release|x86.ActiveCfg = Release|Win32
+		{F8D29357-6A86-480F-9382-AC3A728A68A8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

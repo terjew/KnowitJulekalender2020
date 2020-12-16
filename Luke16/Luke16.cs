@@ -14,71 +14,28 @@ namespace Luke16
 
             Performance.TimeRun(nameof(IsPerfectSquare), () =>
             {
-                for (int i = 0; i < 1_000_000; i++) IsPerfectSquare(i);
+                count = 0;
+                for (int i = 0; i < 1_000_000; i++) if (IsPerfectSquare(i)) count++;
             });
 
             Performance.TimeRun(nameof(IsPerfectSquareOptimized), () =>
             {
-                for (int i = 0; i < 1_000_000; i++) IsPerfectSquareOptimized(i);
+                count = 0; 
+                for (int i = 0; i < 1_000_000; i++) if (IsPerfectSquareOptimized(i)) count++;
             },1000,10);
+            Console.WriteLine("Count: " + count);
 
             Performance.TimeRun(nameof(CountSquareAbundantMT), () =>
             {
                 count = CountSquareAbundantMT(1000000);
-            }, 10, 10, 5);
+            });
             Console.WriteLine("Count: " + count);
 
             Performance.TimeRun(nameof(CountSquareAbundantST), () =>
             {
                 count = CountSquareAbundantST(1000000);
-            }, 10, 10, 5);
+            });
             Console.WriteLine("Count: " + count);
-
-            Performance.TimeRun(nameof(CountKnowitAnders), () =>
-            {
-                count = CountKnowitAnders();
-            }, 10, 10, 5);
-            Console.WriteLine("Count: " + count);
-        }
-
-        static int CountKnowitAnders()
-        {
-            int NUMBER_LIMIT = 1_000_000;
-            int SQUARE_LIMIT = 2_400_000;
-            // Build table of squares.
-            HashSet<int> squares = new HashSet<int>();
-            int factor = 1, square = 1;
-            while (square < SQUARE_LIMIT)
-            {
-                squares.Add(square);
-                factor++;
-                square = factor * factor;
-            }
-
-            // Get the abundant numbers.
-            // https://math.stackexchange.com/questions/561328/finding-abundant-numbers-from-1-to-10-million-using-a-sum
-            int[] sigma = new int[NUMBER_LIMIT];
-            Array.Fill(sigma, 1);
-            for (int i = 2; i < NUMBER_LIMIT; i++)
-            {
-                for (int j = i * 2; j < NUMBER_LIMIT; j += i)
-                {
-                    sigma[j] += i;
-                }
-            }
-            int squareCount = 0;
-            for (int i = 2; i < NUMBER_LIMIT; i++)
-            {
-                if (sigma[i] > i)
-                {
-                    // This is an abundant number.
-                    if (squares.Contains(sigma[i] - i))
-                    {
-                        squareCount++;
-                    }
-                }
-            }
-            return squareCount;
         }
 
         static int CountSquareAbundantST(int max)

@@ -2,4 +2,7 @@
 **/bin
 **/obj
 **/x64/
+a.out
+*.vcxproj.*
+
 
