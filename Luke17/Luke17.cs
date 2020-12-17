@@ -39,12 +39,10 @@ namespace Luke17
                 {
                     if (!AnyOverlappingValue(map, vacuum, x, y, 'x'))
                     {
-                        StampValue(map, vacuum, x, y, 's');
                         StampValue(map, brush, x - 1, y - 1, '.');
                     }
                 }
             }
-            //map.Dump("doneCleaning.txt");
             return map.Array.Count(c => c == ' ');
         }
 
@@ -74,14 +72,14 @@ namespace Luke17
         {
             for (int y = 0; y < sprite.Height; y++)
             {
+                var py = spriteY + y;
+                if (py < 0 || py >= map.Height) continue;
                 for (int x = 0; x < sprite.Width; x++)
                 {
                     var px = spriteX + x;
-                    var py = spriteY + y;
                     if (px < 0 || px >= map.Width) continue;
-                    if (py < 0 || py >= map.Height) continue;
                     var pixel = map[px, py];
-                    if ((pixel == ' ' || pixel == '.') && sprite[x, y] != ' ') map[px, py] = value;
+                    if ((pixel == ' ') && sprite[x, y] != ' ') map[px, py] = value;
                 }
             }
             return false;
