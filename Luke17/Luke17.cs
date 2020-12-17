@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Utilities;
 
 namespace Luke17
@@ -46,12 +47,60 @@ namespace Luke17
             return map.Array.Count(c => c == ' ');
         }
 
+        static int SolveMT()
+        {
+            var lines = TextFile.ReadStringList("kart.txt");
+            var map = MatrixFactory.BuildCharMatrix(lines);
+            var vacuum = MatrixFactory.BuildCharMatrix(vacuumText.Split("\n").ToList());
+            var brush = MatrixFactory.BuildCharMatrix(brushText.Split("\n").ToList());
+
+            int nx = 5;
+            int ny = 5;
+            Task[] tasks = new Task[nx * ny];
+
+            int chunkwidth = map.Width / nx;
+            int chunkheight = map.Height / nx;
+
+            for(int chunky = 0; chunky < ny; chunky++)
+            {
+                for (int chunkx = 0; chunkx < nx; chunkx++)
+                {
+                    int cx = chunkx * chunkwidth;
+                    int cy = chunky * chunkheight;
+                    tasks[chunky * nx + chunkx] = Task.Run(() =>
+                    {
+                        for (int y = cy; y < cy + chunkheight; y++)
+                        {
+                            if (y > map.Height - vacuum.Height) continue;
+                            for (int x = cx; x < cx + chunkwidth; x++)
+                            {
+                                if (x > map.Width - vacuum.Width) continue;
+                                if (!AnyOverlappingValue(map, vacuum, x, y, 'x'))
+                                {
+                                    StampValue(map, brush, x - 1, y - 1, '.');
+                                }
+                            }
+                        }
+                    }
+                    );
+                }
+            }
+
+            Task.WaitAll(tasks);
+            return map.Array.Count(c => c == ' ');
+        }
+
         static void Main(string[] args)
         {
             int dirtyLeft = 0;
             Performance.TimeRun("Solve (naive)", () =>
             {
                 dirtyLeft = Solve();
+            }, 5, 1, 2);
+            Console.WriteLine(dirtyLeft);
+            Performance.TimeRun("Solve (mt)", () =>
+            {
+                dirtyLeft = SolveMT();
             }, 5, 1, 2);
             Console.WriteLine(dirtyLeft);
         }
