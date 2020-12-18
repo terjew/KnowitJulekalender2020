@@ -7,7 +7,7 @@ namespace Luke17
 {
     class Luke17
     {
-        static string vacuumText =
+        static readonly string vacuumText =
             "  sss  \n" +
             " sssss \n" +
             "sssssss\n" +
@@ -16,7 +16,7 @@ namespace Luke17
             " sssss \n" +
             "  sss  ";
 
-        static string brushText =
+        static readonly string brushText =
             "kkk   kkk\n" +
             "kkkkkkkkk\n" +
             "kkkkkkkkk\n" +
