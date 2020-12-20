@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Utilities;
 
@@ -28,7 +29,7 @@ namespace Luke20
             Performance.TimeRun("Read and solve", () =>
             {
                 result = Solve();
-            }, 1, 10, 2);
+            }, 10, 5, 5);
             Console.WriteLine(result);
         }
 
@@ -36,29 +37,33 @@ namespace Luke20
         {
             Dictionary<string, HierarchyNode> nodes = new Dictionary<string, HierarchyNode>();
             HierarchyNode julenissen = new HierarchyNode("Julenissen", null);
-            var lines = TextFile.ReadStringList("elves.txt");
-            foreach (var line in lines)
+            using (StreamReader sr = File.OpenText("elves.txt"))
             {
-                var names = line.Split("🎄");
-                HierarchyNode prev = julenissen;
-                for (int i = 0; i < names.Length; i++)
+                string s = String.Empty;
+                while ((s = sr.ReadLine()) != null)
                 {
-                    var name = names[i];
-                    HierarchyNode node = null;
-                    if (!nodes.ContainsKey(name))
+
+                    var names = s.Split("🎄");
+                    HierarchyNode prev = julenissen;
+                    for (int i = 0; i < names.Length; i++)
                     {
-                        node = new HierarchyNode(name, prev);
-                        nodes.Add(name, node);
+                        var name = names[i];
+                        HierarchyNode node = null;
+                        if (!nodes.ContainsKey(name))
+                        {
+                            node = new HierarchyNode(name, prev);
+                            nodes.Add(name, node);
+                        }
+                        else
+                        {
+                            node = nodes[name];
+                        }
+                        if (i == names.Length - 1)
+                        {
+                            node.Verified = true;
+                        }
+                        prev = node;
                     }
-                    else
-                    {
-                        node = nodes[name];
-                    }
-                    if (i == names.Length - 1)
-                    {
-                        node.Verified = true;
-                    }
-                    prev = node;
                 }
             }
 
