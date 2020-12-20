@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Utilities;
 
 namespace Luke19
 {
@@ -25,15 +26,8 @@ namespace Luke19
 
         public void MoveRight(int steps)
         {
-            while (steps-- > 0)
-            {
-                Head = Head.prev;
-            }
-        }
-
-        public void ShiftContentsLeft(int steps)
-        {
-            while (steps-- > 0)
+            steps = steps % Count;
+            while (steps --> 0)
             {
                 Head = Head.prev;
             }
@@ -134,23 +128,24 @@ namespace Luke19
 
         static void Main(string[] args)
         {
-            Dictionary<string, int> wins = new Dictionary<string, int>();
-            using (StreamReader sr = File.OpenText("input.txt"))
+            string mostWins = null;
+            Performance.TimeRun("Parse and solve", () =>
             {
-                string s = String.Empty;
-                while ((s = sr.ReadLine()) != null)
+                Dictionary<string, int> wins = new Dictionary<string, int>();
+                using (StreamReader sr = File.OpenText("input.txt"))
                 {
-                    var winner = RunGame(s);
-                    var prev = wins.GetValueOrDefault(winner);
-                    wins[winner] = prev + 1;
+                    string s = String.Empty;
+                    while ((s = sr.ReadLine()) != null)
+                    {
+                        var winner = RunGame(s);
+                        var prev = wins.GetValueOrDefault(winner);
+                        wins[winner] = prev + 1;
+                    }
                 }
-            }
-            var spencerWins = wins["Spencer"];
-            var mostWins = wins.OrderByDescending(kvp => kvp.Value).ToArray();
-            for (int i = 0; i < 5; i++)
-            {
-                Console.WriteLine($"{i + 1}: {mostWins[i].Key} ({mostWins[i].Value})");
-            }
+                var spencerWins = wins["Spencer"];
+                mostWins = wins.OrderByDescending(kvp => kvp.Value).First().Key;
+            });
+            Console.WriteLine(mostWins);
         }
 
         static string RunGame(string line)
