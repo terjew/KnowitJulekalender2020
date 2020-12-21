@@ -56,6 +56,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luke19", "Luke19\Luke19.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luke20", "Luke20\Luke20.csproj", "{8E625C52-0322-4A95-B9B3-A5C77B3A8F13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luke21", "Luke21\Luke21.csproj", "{A83E87C0-29C4-4AF1-8AA4-24412EAA5BE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -337,6 +339,18 @@ Global
 		{8E625C52-0322-4A95-B9B3-A5C77B3A8F13}.Release|x64.Build.0 = Release|Any CPU
 		{8E625C52-0322-4A95-B9B3-A5C77B3A8F13}.Release|x86.ActiveCfg = Release|Any CPU
 		{8E625C52-0322-4A95-B9B3-A5C77B3A8F13}.Release|x86.Build.0 = Release|Any CPU
+		{A83E87C0-29C4-4AF1-8AA4-24412EAA5BE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A83E87C0-29C4-4AF1-8AA4-24412EAA5BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A83E87C0-29C4-4AF1-8AA4-24412EAA5BE9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A83E87C0-29C4-4AF1-8AA4-24412EAA5BE9}.Debug|x64.Build.0 = Debug|Any CPU
+		{A83E87C0-29C4-4AF1-8AA4-24412EAA5BE9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A83E87C0-29C4-4AF1-8AA4-24412EAA5BE9}.Debug|x86.Build.0 = Debug|Any CPU
+		{A83E87C0-29C4-4AF1-8AA4-24412EAA5BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A83E87C0-29C4-4AF1-8AA4-24412EAA5BE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A83E87C0-29C4-4AF1-8AA4-24412EAA5BE9}.Release|x64.ActiveCfg = Release|Any CPU
+		{A83E87C0-29C4-4AF1-8AA4-24412EAA5BE9}.Release|x64.Build.0 = Release|Any CPU
+		{A83E87C0-29C4-4AF1-8AA4-24412EAA5BE9}.Release|x86.ActiveCfg = Release|Any CPU
+		{A83E87C0-29C4-4AF1-8AA4-24412EAA5BE9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
