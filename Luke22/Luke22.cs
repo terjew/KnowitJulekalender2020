@@ -22,7 +22,7 @@ namespace Luke22
             using (StreamReader sr = File.OpenText(filename))
             {
                 string s = String.Empty;
-                while ((s = sr.ReadLineAsync()) != null)
+                while ((s = sr.ReadLine()) != null)
                 {
                     var count = CountSpellings(s);
                     if (count > max)
