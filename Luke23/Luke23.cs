@@ -13,8 +13,8 @@ namespace Luke23
         {
             Dictionary<string, (int,int)> words = new Dictionary<string, (int,int)>();
             HashSet<char> vowels = new HashSet<char>() { 'a', 'e', 'i', 'o', 'u', 'y', 'æ', 'ø', 'å' };
-            var text = File.ReadAllText(path);
 
+            var text = File.ReadAllText(path);
             string word = null;
             int value = 0;
             int numvowels = 0;
@@ -25,8 +25,8 @@ namespace Luke23
                 var c = text[i];
                 while (c != ' ')
                 {
-                    c = text[++i];
                     if (vowels.Contains(c)) numvowels++;
+                    c = text[++i];
                 }
                 word = text.Substring(linestart, i - linestart);
 
@@ -47,6 +47,7 @@ namespace Luke23
                     }
                 }
             }
+
             return words;
         }
 
