@@ -1,0 +1,5 @@
+﻿snø 5
+hygge 7
+grøt 10
+pepperkake 6
+nisse 2
