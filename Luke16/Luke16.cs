@@ -12,26 +12,26 @@ namespace Luke16
         {
             int count = 0;
 
-            Performance.TimeRun(nameof(IsPerfectSquare), () =>
+            Performance.Benchmark(nameof(IsPerfectSquare), () =>
             {
                 count = 0;
                 for (int i = 0; i < 1_000_000; i++) if (IsPerfectSquare(i)) count++;
             });
 
-            Performance.TimeRun(nameof(IsPerfectSquareOptimized), () =>
+            Performance.Benchmark(nameof(IsPerfectSquareOptimized), () =>
             {
                 count = 0; 
                 for (int i = 0; i < 1_000_000; i++) if (IsPerfectSquareOptimized(i)) count++;
             },1000,10);
             Console.WriteLine("Count: " + count);
 
-            Performance.TimeRun(nameof(CountSquareAbundantMT), () =>
+            Performance.Benchmark(nameof(CountSquareAbundantMT), () =>
             {
                 count = CountSquareAbundantMT(1000000);
             });
             Console.WriteLine("Count: " + count);
 
-            Performance.TimeRun(nameof(CountSquareAbundantST), () =>
+            Performance.Benchmark(nameof(CountSquareAbundantST), () =>
             {
                 count = CountSquareAbundantST(1000000);
             });

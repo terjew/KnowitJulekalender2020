@@ -26,7 +26,7 @@ namespace Luke20
         static void Main(string[] args)
         {
             int result = 0;
-            Performance.TimeRun("Read and solve", () =>
+            Performance.Benchmark("Read and solve", () =>
             {
                 result = Solve();
             }, 10, 5, 5);

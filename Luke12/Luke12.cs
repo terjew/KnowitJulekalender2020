@@ -11,22 +11,22 @@ namespace Luke12
         static void Main(string[] args)
         {
             int size = 0;
-            Performance.TimeRun("Enumerate and count", () =>
+            Performance.Benchmark("Enumerate and count", () =>
             {
                 var input = TextFile.EnumerateAsciiCharacters("family.txt");
                 size = GetLargestGeneration(input);
             });
-            Performance.TimeRun("Read all and count (IEnumerable)", () =>
+            Performance.Benchmark("Read all and count (IEnumerable)", () =>
             {
                 var str = File.ReadAllText("family.txt");
                 size = GetLargestGeneration(str);
             });
-            Performance.TimeRun("Read all and count (string)", () =>
+            Performance.Benchmark("Read all and count (string)", () =>
             {
                 var str = File.ReadAllText("family.txt");
                 size = GetLargestGenerationString(str);
             });
-            Performance.TimeRun("Read (string)", () =>
+            Performance.Benchmark("Read (string)", () =>
             {
                 var str = File.ReadAllText("family.txt");
             });

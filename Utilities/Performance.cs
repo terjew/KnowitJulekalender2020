@@ -9,7 +9,7 @@ namespace Utilities
 {
     public static class Performance
     {
-        public static void TimeRun(string what, Action a, int runs = 10, int loops = 100, int warmupCount = 10)
+        public static void Benchmark(string what, Action a, int runs = 10, int loops = 100, int warmupCount = 10)
         {
             for (int i = 0; i < warmupCount; i++)
             {
@@ -28,7 +28,7 @@ namespace Utilities
             }
             double ticksPerSecond = (double)Stopwatch.Frequency;
 
-            Console.WriteLine($"{what}: {totalTicks} ticks total in {runs * loops} iterations ({runs} runs of {loops} loops), {totalTicks * 1000000 / ticksPerSecond / (runs * loops)} µs/run");
+            Console.WriteLine($"{what}: {totalTicks} ticks total in {runs * loops} iterations ({runs} runs of {loops} loops), {totalTicks * 1000000 / ticksPerSecond / (runs * loops)} µs average");
         }
     }
 }

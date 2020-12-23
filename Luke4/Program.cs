@@ -10,7 +10,7 @@ namespace Luke4
         static void Main(string[] args)
         {
             long antallkaker = 0;
-            Performance.TimeRun("Read and parse", () =>
+            Performance.Benchmark("Read and parse", () =>
             {
                 var ingredienser = Sum(TextFile.ReadStringList("leveringsliste.txt"));
                 var muligekaker = new[]

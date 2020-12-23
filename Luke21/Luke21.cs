@@ -9,7 +9,7 @@ namespace Luke21
         static void Main(string[] args)
         {
             int treated = 0;
-            Performance.TimeRun("Read+solve", () =>
+            Performance.Benchmark("Read+solve", () =>
             {
                 treated = Solve();
             }, 10, 1000);

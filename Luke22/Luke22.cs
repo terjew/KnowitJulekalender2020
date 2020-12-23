@@ -10,7 +10,7 @@ namespace Luke22
         static void Main(string[] args)
         {
             int lineno = 0;
-            Performance.TimeRun("Read and solve", () => lineno = Solve("input.txt"), 10, 10, 2);
+            Performance.Benchmark("Read and solve", () => lineno = Solve("input.txt"), 10, 10, 2);
             Console.WriteLine(lineno);
         }
 

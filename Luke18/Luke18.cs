@@ -11,29 +11,29 @@ namespace Luke18
         static void Main(string[] args)
         {
             int count = 0;
-            Performance.TimeRun("Read and solve", () =>
+            Performance.Benchmark("Read and solve", () =>
             {
                 count = Solve();
             },10,10);
             Console.WriteLine(count);
-            Performance.TimeRun("Read and solve MT", () =>
+            Performance.Benchmark("Read and solve MT", () =>
             {
                 count = SolveLinqMT();
             },10,10);
             Console.WriteLine(count);
 
-            Performance.TimeRun("Read file", () =>
+            Performance.Benchmark("Read file", () =>
             {
                 TextFile.ReadStringList("wordlist.txt");
             }, 10, 10);
 
             var cacheWords = TextFile.ReadStringList("wordlist.txt");
-            Performance.TimeRun("solve", () =>
+            Performance.Benchmark("solve", () =>
             {
                 count = SolveNoIO(cacheWords);
             }, 100, 20);
             Console.WriteLine(count);
-            Performance.TimeRun("solve MT", () =>
+            Performance.Benchmark("solve MT", () =>
             {
                 count = SolveLinqMTNoIO(cacheWords);
             }, 100, 100);

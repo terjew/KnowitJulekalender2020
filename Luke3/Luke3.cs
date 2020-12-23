@@ -11,7 +11,7 @@ namespace Luke3
         static void Main(string[] args)
         {
             List<string> candidates = null;
-            Performance.TimeRun("Read and search", () =>
+            Performance.Benchmark("Read and search", () =>
             {
                 var matrix = new CharacterMatrix(TextFile.ReadStringList("matrix.txt"));
                 candidates = TextFile.ReadStringList("wordlist.txt");

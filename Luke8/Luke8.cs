@@ -160,7 +160,7 @@ namespace Luke8
         static void Main(string[] args)
         {
             float maxDiff = 0;
-            Performance.TimeRun("read and simulate", () =>
+            Performance.Benchmark("read and simulate", () =>
             {
                 var solver = new Solver("input.txt");
                 maxDiff = solver.Solve();

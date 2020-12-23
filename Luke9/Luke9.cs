@@ -62,7 +62,7 @@ namespace Luke9
         static void Main(string[] args)
         {
             int days = 0;
-            Performance.TimeRun("read and solve", () =>
+            Performance.Benchmark("read and solve", () =>
             {
                 var luke = new Luke9("elves.txt");
                 days = luke.Solve();

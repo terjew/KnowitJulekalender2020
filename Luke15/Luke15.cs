@@ -10,7 +10,7 @@ namespace Luke15
         static void Main(string[] args)
         {
             int sum = 0;
-            Performance.TimeRun("LINQ solution", () =>
+            Performance.Benchmark("LINQ solution", () =>
             {
                 sum = Solve();
             }, 10, 1, 3);

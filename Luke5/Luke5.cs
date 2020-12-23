@@ -23,7 +23,7 @@ namespace Luke5
         static void Main(string[] args)
         {
             float area = 0;
-            Performance.TimeRun("Read and calculate", () =>
+            Performance.Benchmark("Read and calculate", () =>
             {
                 var corners = new List<Point>();
                 var pos = new Point(0, 0);

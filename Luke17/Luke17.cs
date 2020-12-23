@@ -93,12 +93,12 @@ namespace Luke17
         static void Main(string[] args)
         {
             int dirtyLeft = 0;
-            Performance.TimeRun("Solve (naive)", () =>
+            Performance.Benchmark("Solve (naive)", () =>
             {
                 dirtyLeft = Solve();
             }, 5, 1, 2);
             Console.WriteLine(dirtyLeft);
-            Performance.TimeRun("Solve (mt)", () =>
+            Performance.Benchmark("Solve (mt)", () =>
             {
                 dirtyLeft = SolveMT();
             }, 5, 1, 2);

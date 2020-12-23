@@ -11,11 +11,11 @@ namespace Luke10
         {
             string elf = "";
             int score = 0;
-            Performance.TimeRun("Solution", () =>
+            Performance.Benchmark("Solution", () =>
             {
                 (elf, score) = Solve("leker.txt");
             });
-            Performance.TimeRun("LINQ solution", () =>
+            Performance.Benchmark("LINQ solution", () =>
             {
                 (elf, score) = SolveLinq("leker.txt");
             });

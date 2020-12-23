@@ -11,7 +11,7 @@ namespace Luke7
         static void Main(string[] args)
         {
             int numSymmetric = 0;
-            Performance.TimeRun("Read and solve", () =>
+            Performance.Benchmark("Read and solve", () =>
             {
                 var lines = TextFile.ReadStringList("forest.txt");
                 lines.Reverse();

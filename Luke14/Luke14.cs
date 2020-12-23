@@ -44,7 +44,7 @@ namespace Luke14
         static void Main(string[] args)
         {
             int count = 0;
-            Performance.TimeRun("Solve with sieve", () =>
+            Performance.Benchmark("Solve with sieve", () =>
             {
                 List<int> sequence = new List<int>();
                 sequence.Add(0);

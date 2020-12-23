@@ -11,19 +11,19 @@ namespace Luke1
         {
             long num = 0;
 
-            Performance.TimeRun("SolveSum", () =>
+            Performance.Benchmark("SolveSum", () =>
             {
                 num = SolveSum();
             });
             Console.WriteLine(num);
 
-            Performance.TimeRun("SolveSumInlineRead", () =>
+            Performance.Benchmark("SolveSumInlineRead", () =>
             {
                 num = SolveSumInlineRead();
             });
             Console.WriteLine(num);
 
-            Performance.TimeRun("SolveArray", () =>
+            Performance.Benchmark("SolveArray", () =>
             {
                 num = SolveArray();
             });

@@ -129,7 +129,7 @@ namespace Luke19
         static void Main(string[] args)
         {
             string mostWins = null;
-            Performance.TimeRun("Parse and solve", () =>
+            Performance.Benchmark("Parse and solve", () =>
             {
                 Dictionary<string, int> wins = new Dictionary<string, int>();
                 using (StreamReader sr = File.OpenText("input.txt"))

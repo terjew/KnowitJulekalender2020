@@ -13,9 +13,9 @@ namespace Luke11
             var hasPassword = ObfuscatedContains("juletre", "jeljxmw");
             var password = "eamqia";
             var path = "hint.txt";
-            Performance.TimeRun("naive", () => SolveNaive(path, password), 10, 20);
-            Performance.TimeRun("linq", () => SolveLinq(path, password), 10, 20);
-            Performance.TimeRun("plinq", () => SolvePLinq(path, password), 10, 20);
+            Performance.Benchmark("naive", () => SolveNaive(path, password), 10, 20);
+            Performance.Benchmark("linq", () => SolveLinq(path, password), 10, 20);
+            Performance.Benchmark("plinq", () => SolvePLinq(path, password), 10, 20);
         }
 
         private static string SolveLinq(string path, string password)

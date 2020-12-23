@@ -13,19 +13,19 @@ namespace Luke13
         {
             string remaining = null;
             string text = "phzvjbrsnkeehvglzpveenyjycwzpukigcdiotomuankejhqdhqtojmezmfqtuasuhzbbgawjlxbrqotwgythqsrzfbgisnakeopxtzbbdfbjdnuqymqqihylyszwuezoigjoxhavuyzqnqfnzvtazagvahullujteapqeogyfelzygcqujnxshrivkmhwkkmfiqpqoihcxarewxffyrwmmfghharnijxondraglvemdqfnxdhxilweqcxxsvviuxzshpfjttoymplfahmaskvtimvirhmqoudvqagacqsoeyvpouejmamchbhqfhidpsyovxeazzfbbocuydquadffumpmhwwiotpqiznyvmlnthupvvgfwrpeirltvlorgjqpwzstgjwpsixrbbjsuiumaxydtkcjxvgazonghhfgswunxjhnxvzqxnvtrdujblkbeebsdfgawvholjddwezacxiumyvhlwwbqdpfxzvhyqxcqlnqpvqnvjnygvwrzzaojhnfeywptbttgyyhtkpdbsqcaxpuzsqpadjzssfdiguijlycugnbftcmmpjjjxrjkygethmfvkxbhjkjhrrhgyplasjiunhnqkcvdyzlzxnbdlyxbthmpwrwovuibuypptvgligepclvyxvwkhziqucrnkdelmvdaecdnzeapebfkhocdoaljciemcdasdxqqzjbzhetmovgitntxmvgnfqzrtlaymmxepetgrdsqwmjsodqqrgccnahycqpltphhaeyjnnytjctmkoysduumnurtyzodhsaqdhpyytwrkvymwikkxoolrcgipaftzvwbqounhxriykepdahubsijtwsvtzjihpatpmuemzwthfzypjpiwzhckuxvfrlxlmcvmdujwsghltaukprsancpooxywxccnqgqkgmscstoupxilycjumybfcnjtycichjvkxwfqqqinzrzpthesxlcgcifvjuhyegmjrkb ";
-            Performance.TimeRun("text->ienumerable", () =>
+            Performance.Benchmark("text->ienumerable", () =>
             {
                 remaining = new string(GetRemainingCharacters(text).ToArray());
             }, 1000, 1000);
-            Performance.TimeRun("text->string", () =>
+            Performance.Benchmark("text->string", () =>
             {
                 remaining = GetRemainingCharactersString(text);
             }, 1000, 1000);
-            Performance.TimeRun("file->string", () =>
+            Performance.Benchmark("file->string", () =>
             {
                 remaining = GetRemainingCharactersString(File.ReadAllText("text.txt"));
             }, 100, 1000);
-            Performance.TimeRun("file->ienumerable", () =>
+            Performance.Benchmark("file->ienumerable", () =>
             {
                 remaining = new string(GetRemainingCharacters(File.ReadAllText("text.txt")).ToArray());
             }, 100, 1000);
