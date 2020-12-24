@@ -7,15 +7,18 @@ using Utilities;
 
 namespace Luke23
 {
+    struct WordInfo
+    {
+        public int score;
+        public int vowels;
+        public int length;
+    }
+
     class Luke23
     {
-        static Dictionary<string, (int,int)> ReadWords(string path)
+        static WordInfo[] ReadWords(string path, WordInfo[] wordsArr)
         {
-            Dictionary<string, (int,int)> words = new Dictionary<string, (int,int)>();
-            HashSet<char> vowels = new HashSet<char>() { 'a', 'e', 'i', 'o', 'u', 'y', 'æ', 'ø', 'å' };
-
             var text = File.ReadAllText(path);
-            string word = null;
             int value = 0;
             int numvowels = 0;
             int linestart = 0;
@@ -25,17 +28,24 @@ namespace Luke23
                 var c = text[i];
                 while (c != ' ')
                 {
-                    if (vowels.Contains(c)) numvowels++;
+                    if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y' || c == 'æ' || c == 'ø' || c == 'å') numvowels++;
                     c = text[++i];
                 }
-                word = text.Substring(linestart, i - linestart);
-
+                var w0 = text[linestart];
+                var w1 = text[linestart + 1];
+                var length = i - linestart;
                 while (i < text.Length)
                 {
                     c = text[++i];
                     if (c == '\n')
                     {
-                        words.Add(word, (value, numvowels));
+                        var index = w0 << 8 | w1;
+                        wordsArr[index] = new WordInfo()
+                        {
+                            score = value,
+                            vowels = numvowels,
+                            length = length,
+                        };
                         linestart = ++i;
                         value = 0;
                         numvowels = 0;
@@ -48,10 +58,10 @@ namespace Luke23
                 }
             }
 
-            return words;
+            return wordsArr;
         }
 
-        static (string,int) DoBattle(string path, Dictionary<string,(int,int)> words)
+        static (string,int) DoBattle(string path, WordInfo[] words)
         {
             int lilScore = 0;
             int nizScore = 0;
@@ -75,68 +85,55 @@ namespace Luke23
             return lilScore > nizScore ? ("Lil Niz X", lilScore) : ("Nizzy G", nizScore);
         }
 
-        static int ScoreLine(ReadOnlySpan<char> rapline, Dictionary<string, (int,int)> words)
+        static int ScoreLine(ReadOnlySpan<char> rapline, WordInfo[] words)
         {
-            int start = 0;
             int pos = 0;
             bool prefixed = false;
             int score = 0;
-            int previousVowels = 0;
-            string previousWord = null;
-            int repetitions = 0;
-            if (start < rapline.Length && rapline[start] == 'j')
-            {
-                prefixed = true;
-                pos += 4;
-                start += 4;
-            }
-
+            int previousVowels = 999;
+            int previousIndex = -1;
+            int repetitions = 1;
+            WordInfo info = words[0];
             while (pos < rapline.Length)
             {
-                if (pos == rapline.Length - 1 || rapline[pos + 1] == ' ')//add word score:
+                if (rapline[pos] == 'j')
                 {
-                    int wordScore, numVowels, vowelBonus = 0;
-                    var word = new string(rapline.Slice(start, pos - start + 1));
-                    (wordScore, numVowels) = words[word];
-
-                    if (previousWord == word)
-                    {
-                        repetitions++;
-                    }
-                    else
-                    {
-                        repetitions = 1;
-                    }
-
-                    if (prefixed) numVowels += 2;
-                    if (previousWord != null && numVowels > previousVowels)
-                    {
-                        vowelBonus = numVowels - previousVowels;
-                        if (prefixed) vowelBonus *= 2;
-                        wordScore += vowelBonus;
-                    }
-                    if (repetitions > 1)
-                    {
-                        wordScore /= repetitions;
-                    }
-
-                    score += wordScore;
-
-                    previousWord = word;
-                    previousVowels = numVowels;
-
-                    pos ++;
-                    start = pos + 1; //move to start next word
-                    prefixed = false;
-                    //check if next word starts with jule:
-                    if (start < rapline.Length && rapline[start] == 'j')
-                    {
-                        prefixed = true;
-                        pos += 4;
-                        start += 4;
-                    }
+                    prefixed = true;
+                    pos += 4;
                 }
-                pos++;
+
+                int wordScore, numVowels, vowelBonus = 0;
+                var w0 = rapline[pos];
+                var w1 = rapline[pos + 1];
+                int index = w0 << 8 | w1;
+                if (index == previousIndex)
+                {
+                    repetitions++;
+                }
+                else
+                {
+                    repetitions = 1;
+                    info = words[index];
+                }
+
+                wordScore = info.score;
+                numVowels = info.vowels;
+                if (numVowels > previousVowels)
+                {
+                    vowelBonus = numVowels - previousVowels;
+                    if (prefixed) vowelBonus *= 2;
+                    wordScore += vowelBonus;
+                }
+                if (repetitions > 1)
+                {
+                    wordScore /= repetitions;
+                }
+
+                score += wordScore;
+                previousIndex = index;
+                previousVowels = numVowels;
+                prefixed = false;
+                pos += info.length + 1;
             }
             return score;
         }
@@ -145,10 +142,10 @@ namespace Luke23
         {
             string winner = null;
             int score = 0;
-            Dictionary<string, (int, int)> basewords = null;
+            WordInfo[] basewords = new WordInfo[65536];
             Performance.Benchmark("Read and solve", () =>
             {
-                basewords = ReadWords("basewords.txt");
+                ReadWords("basewords.txt", basewords);
                 (winner, score) = DoBattle("rap_battle.txt", basewords);
             }, 500, 100, 1000);
             Console.WriteLine($"{winner},{score}");
